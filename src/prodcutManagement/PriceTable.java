@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class PriceTable {
 	private int size;
 	ArrayList<Product> productTable;
+	public PriceTable(){
+		size = 0;
+		productTable = new ArrayList<Product>();
+	}
 	public void load(){
 		String productCode;
 		String productName;
@@ -35,11 +39,12 @@ public class PriceTable {
 					retailPrice = Integer.parseInt(arr[4]);
 					preferPrice = Integer.parseInt(arr[5]);
 					point = Integer.parseInt(arr[6]);
-					System.out.println(productCode+productName+retailPrice+" "+preferPrice+" "+point);
+//					System.out.println(productCode+productName+retailPrice+" "+preferPrice+" "+point);
 					p = new Product(productCode, productName, retailPrice, preferPrice, point);
-//					productTable.add(p);
+					productTable.add(p);
+					size++;
 				}
-				System.out.println("okay");
+				System.out.println("successfully loaded.");
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Cannot find the file!");
