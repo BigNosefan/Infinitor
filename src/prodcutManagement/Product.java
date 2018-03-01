@@ -38,8 +38,22 @@ public class Product {
 		this.point = point;
 	}
 	public String toString(){
-		String str = this.productCode+" "+this.productName+" "+this.retailPrice+" "+this.preferPrice+" "+this.point;
+		String str = this.productCode+"\t"+this.productName+"\t"+this.productStandard+"\t"+this.retailPrice+"\t"+this.preferPrice+"\t"+this.point;
 		return str;
 	}
-	
+	public int getPreferPrice() {
+		return this.preferPrice;
+	}
+	public boolean compareWithCode(String code){
+		if(this.productCode.equals(code))
+			return true;
+		else
+			return false;
+	}
+	public boolean compareWithName(String name){
+		if(this.productName.equals(name))
+			return true;
+		else
+			return false;
+	}
 }

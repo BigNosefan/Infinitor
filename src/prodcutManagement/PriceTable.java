@@ -7,14 +7,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import sellManagement.ListItem;
+
 public class PriceTable {
+	/*
+	 * 价格表类
+	 * 目的：可以通过此类查询货物价格等
+	 * 
+	 * 
+	 */
 	private int size;
 	ArrayList<Product> productTable;
 	public PriceTable(){
+		//初始化
 		size = 0;
 		productTable = new ArrayList<Product>();
 	}
 	public void load(){
+		//载入文本文档中的货品数据
 		String productCode;
 		String productName;
 		String productStandard;
@@ -40,7 +50,7 @@ public class PriceTable {
 					preferPrice = Integer.parseInt(arr[5]);
 					point = Integer.parseInt(arr[6]);
 //					System.out.println(productCode+productName+retailPrice+" "+preferPrice+" "+point);
-					p = new Product(productCode, productName, retailPrice, preferPrice, point);
+					p = new Product(productCode, productName, productStandard, retailPrice, preferPrice, point);
 					productTable.add(p);
 					size++;
 				}
@@ -53,4 +63,44 @@ public class PriceTable {
 		}
 		
 	}
+	public int size(){
+		return size;
+	}
+	public ListItem getListItemByCode(String Code){
+		for(Product p : productTable){
+			if(p.compareWithCode(Code)){
+				return new ListItem(p);
+			}
+		}
+		return null;
+		
+	}
+	public ListItem getListItemByCode(String Code, int num){
+		for(Product p : productTable){
+			if(p.compareWithCode(Code)){
+				return new ListItem(p,num);
+			}
+		}
+		return null;
+		
+	}
+	public ListItem getListItemByName(String Name){
+		for(Product p : productTable){
+			if(p.compareWithName(Name)){
+				return new ListItem(p);
+			}
+		}
+		return null;
+		
+	}
+	public ListItem getListItemByName(String Name,int num){
+		for(Product p : productTable){
+			if(p.compareWithName(Name)){
+				return new ListItem(p,num);
+			}
+		}
+		return null;
+		
+	}
+	
 }
